@@ -1,29 +1,17 @@
-function sandwich(...items: string[]): void {
-    console.log("Sandwich order:")
+//BMI CALCULATOR USING INQUIRER PROMPT
+import inquirer from "inquirer";
 
-    for (let i = 0; i < items.length; i++){
-        console.log(`- ${items[i]}`)
-    }
-}
+const question = [
+{type: `number`, name: `weight`, message: `weight(kg):`},
+{type: `number`, name: `height`, message: `heigth(m):`},
+];
 
-console.log("enjoy your sandwich kamran tessori")
+const calculatorBMI= (weight : number, height: number): number =>  weight/(height*height);
 
-sandwich(`capsicum`,`tomato`,`chicken`)
-sandwich(`beef`,`cheese`)
-sandwich(`garlic chicken`,`mayo sauce`)
+const main = async() => {
+const {weight,height} = await inquirer.prompt(question);
 
+console.log(`BMI: ${calculatorBMI(weight,height).toFixed(2)}`)
+};
 
-type car = {
-    manufacture: string
-    model: string
-    [key: string]: any;
-}
-function createCar(manufacture: string, model: string, optional: Record<string, any>): car {
-return{
-    manufacture,
-    model,
-    ...optional
-}
-}
- const mycar: car = createCar("toyota","corolla",{color: "silver", year: "2024"})
- console.log(mycar)
+main();
